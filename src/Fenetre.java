@@ -114,10 +114,64 @@ public class Fenetre  extends JFrame implements ActionListener{
 		}
 	}
 	private void change() {
-		int table[] = {};
-		for(int i=0;i<inuser.length();i++) {
-			int rand= (int)(Math.random()*inuser.length());
-			table[i]=rand;
+		int lim =0;
+		int where = (int)(Math.random()*(sizeuser-inuser.length()));
+		for(int i=0;i<sizeuser;i++) {
+			int rand = 0;
+			String conv="";
+			if(i==where){
+				rand=4;
+				i+=(inuser.length()-1);
+			}else{
+				if(number.isSelected()&&!letter.isSelected()) {
+					rand=1;
+				}else if(!number.isSelected()&&letter.isSelected()&&!special.isSelected()){
+					rand=2;
+				}else if(!number.isSelected()&&!letter.isSelected()){
+					pwd="Erreur";
+				}else if(number.isSelected()&&letter.isSelected()&&special.isSelected()){
+					if(lim==0) {
+						rand= (int)(Math.random()*3)+1;
+					}else {
+						rand=(int)(Math.random()*2)+1;;
+					}
+				}else if(!number.isSelected()&&letter.isSelected()&&special.isSelected()){
+					if(lim==0) {
+						rand= (int)(Math.random()*2)+2;
+					}else {
+						rand=2;
+					}
+				}else {
+					rand= (int)(Math.random()*2)+1;
+				}
+			}
+			
+			switch(rand) {
+			case 1:
+				int numb = (int)(Math.random()*9)+1;
+				conv = Integer.toString(numb);
+				
+			break;
+			case 2:
+				int letterNumber = (int)(Math.random()*26);
+				int letterMaj = (int)(Math.random()*2);
+				conv = alphabet[letterNumber];
+				if(maj.isSelected() && letterMaj==1) {
+					conv = conv.toUpperCase();
+				}
+			break;
+			case 3:
+				conv = "@";
+				lim =1;
+			break;
+			case 4:
+				conv=inuser;
+			break;
+			default:
+				pwd = "Erreur";
+			break;
+			}
+			pwd += conv;
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -148,7 +202,6 @@ public class Fenetre  extends JFrame implements ActionListener{
 				}
 			pwd="";
 			if(inuser.length()>0) {
-				pwd=inuser;
 				change();
 			}else {
 				generate();
