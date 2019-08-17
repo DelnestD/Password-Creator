@@ -26,7 +26,7 @@ public class Fenetre  extends JFrame implements ActionListener{
 		size = new JTextField(Integer.toString(sizeuser),5);
 		in = new JTextField("",25);
 		out = new JTextField("",25);
-		validation = new JButton("Vailder");
+		validation = new JButton("Valider");
 		number = new JCheckBox("Chiffre");
 		letter= new JCheckBox("Lettre");
 		maj= new JCheckBox("Majuscule");
