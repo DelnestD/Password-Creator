@@ -16,7 +16,8 @@ public class Fenetre  extends JFrame implements ActionListener{
 	public Fenetre() {
 		this.setTitle("Password Generator");
 		this.setLocationRelativeTo(null);
-		this.setSize(600, 600);
+		this.setSize(350, 200);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		pan = new JPanel();
@@ -179,11 +180,13 @@ public class Fenetre  extends JFrame implements ActionListener{
 		if(letter.isSelected()) {
 			maj.setVisible(true);
 			special.setVisible(true);
+			this.setSize(350, 230);
 		}else {
 			maj.setVisible(false);
 			maj.setSelected(false);
 			special.setVisible(false);
 			special.setSelected(false);
+			this.setSize(350, 200);
 		}
 		inuser=in.getText();
 		if(e.getSource() == validation) {
